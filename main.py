@@ -13,13 +13,15 @@ class Event:
     def play(self):
         print("* ----------------- *")
         for line in self.text:
-            time.sleep(0.4)
+            time.sleep(0.3)
             print(line)
         print()
 
-        print(f"Choices: ", end="")
+        print(f"Choices: ",)
         for idx, choice in enumerate(self.choices):
-            print(f"         {idx}; {choice}")
+            time.sleep(0.2)
+            print(f"         {idx + 1}; {choice}")
+
         print()
 
         if not self.choices:
@@ -27,7 +29,7 @@ class Event:
             sys.exit()
 
         choice = 1232
-        while 0 > choice or choice >= len(self.choices):
+        while 0 >= choice or choice > len(self.choices):
             choice = input("Your choice: ")
 
             if not choice.isdigit():
@@ -36,11 +38,15 @@ class Event:
             else:
                 choice = int(choice)
 
-        if 0 <= choice < len(self.choices):
-            self.next_events[choice].play()
+        if 0 < choice <= len(self.choices):
+            self.next_events[choice - 1].play()
 
 
-intro = ["You have boarded an airplane just like any other time.",
+intro = ["       ____       _",
+         "     |__\\_\\_o,___/ \\",
+         "    ([___\\_\\_____-\\'",
+         "     | o'"
+         , "You have boarded an airplane just like any other time.",
          "It takes off, no problem.",
          "As you fly over a group of islands, you hear your captain speaking:",
          "\"Dear passengers, I regret to inform you, but the plane ",
@@ -73,12 +79,17 @@ bandaging = Event(["You bandage your arm, it seems to have helped tremendously."
                      "Explore the island - head inland",
                      "Go back"], [])
 
-its_getting_dark = Event(["So far you have found nothing of interest.",
-                    "It is getting dark very fast, and you see a glimmer of light in the distance.",
-                    "Or is it your mind playing tricks?"],
-                   ["Set up a shelter for the night",
-                    "Go towards the light",
-                    "Go back"], [])
+its_getting_dark = Event(["        ______",
+                          "       /     /\\",
+                          "      /     /  \\",
+                          "     /_____/----\\_",
+                          "    "     "       ",
+                          "So far you have found nothing of interest.",
+                          "It is getting dark very fast, and you see a glimmer of light in the distance.",
+                          "Or is it your mind playing tricks?"],
+                         ["Set up a shelter for the night",
+                          "Go towards the light",
+                          "Go back"], [])
 
 making_shelter = Event(["You wake up in your shelter,",
                           "but you notice that you seem to be missing a kidney.",
@@ -107,14 +118,29 @@ sneaks_in = Event(["You sneak into the field when no one can see you.",
                        "Do not make a joint and continue",
                        "Go back"], [])
 
-no_joint = Event(["You choose not to make a joint.",
-                          "The spiking pain grows in intensity,",
-                          "to the point where you are not able to suppress a scream.",
-                          "You hear barking of dogs, it gets closer and closer by the second.",
-                          "You are devoured by a pack of hounds.",
-                          "You have died .."], ["Go back"], [])
+no_joint = Event(["   / \\__",
+                  "  (    @\\___",
+                  "  /         O",
+                  " /   (_____/",
+                  "/_____/   U",
+                  "You choose not to make a joint.",
+                  "The spiking pain grows in intensity,",
+                  "to the point where you are not able to suppress a scream.",
+                  "You hear barking of dogs, it gets closer and closer by the second.",
+                  "You are devoured by a pack of hounds.",
+                  "You have died .."], ["Go back"], [])
 
-makes_joint = Event(["You decide to roll a joint from the plants around you.",
+makes_joint = Event(["       .",
+                     "  .   .|.   .",
+                     "  .\\\' :|: \'/.",
+                     "   .\\\':|:\'/.",
+                     "    .\\\'|\'/.",
+                     "_.,,._\\j/_.,,._",
+                     " \'\"\"\'./H\\.\'\"\"\'",
+                     "     /\'H\'\\",
+                     "       H",
+                     "",
+                     "You decide to roll a joint from the plants around you.",
                         "The pain fades away, as if it was never there.",
                         "From there you continue into the nearest building.",
                         "It seems to be a dressing room for the mercenaries working there.",
@@ -127,7 +153,19 @@ doesnt_change_clothes = Event(["As you try to exit the room, another guard sees 
                         "You are executed.",
                         "You have died .."], ["Go back"], [])
 
-changes_clothes = Event(["You dress up as a guard. You fit in quite well.",
+changes_clothes = Event([" +--^----------,--------,-----,--------^-,",
+                         " | |||||||||   `--------\'     |          O",
+                         " `+---------------------------^----------|",
+                         "   `\\_,---------,---------,--------------\'",
+                         "     / XXXXXX /\'|       /\'",
+                         "    / XXXXXX /  `\\    /\'",
+                         "   / XXXXXX /`-------\'",
+                         "  / XXXXXX /",
+                         " / XXXXXX /",
+                         "(________(",
+                         " `------\'",
+
+                         "You dress up as a guard. You fit in quite well.",
                       "As you take a look around, a man orders you",
                       "to execute a slave that has not fulfilled his quota.",
                       "He looks to be the chief around here."],
@@ -144,7 +182,10 @@ complies = Event(["You have complied with the order, executing the slave.",
                        "YOU HAVE WON", "",
                        "~but at what price?"], ["Go back"], [])
 
-follows_the_light= Event(["You decide to follow the shimmering light in the distance.",
+follows_the_light= Event(["  n", " / `\\", "(___:)", " \"\"\"\"",
+                          "  ||", "  ||", "  ))", " //", "((", " \\\\", "  ))",
+                          "  ||",
+                          "You decide to follow the shimmering light in the distance.",
                         "On the way, you stumble across a patch of magic mushrooms."],
                        ["Eat some",
                         "Leave them be",
@@ -172,7 +213,29 @@ infiltrate_plane = Event(["You decide to infiltrate the plane.",
                             ["Try to save yourself",
                              "Go back"], [])  # ->waking_up (???)
 
-eats_shroom = Event(["You take and eat half a basket worth of mushrooms.", "",
+eats_shroom = Event(["           ,   ,",
+                     "         ,-`{-`/",
+                     "      ,-~ , \\ {-~~-,",
+                     "    ,~  ,   ,`,-~~-,`,",
+                     "  ,`   ,   { {      } }                                             }/",
+                     " ;     ,--/`\\ \\    / /                                     }/      /,/",
+                     ";  ,-./      \\ \\  { {  (                                  /,;    ,/ ,/",
+                     "; /   `       } } `, `-`-.___                            / `,  ,/  `,/",
+                     " \\|         ,`,`    `~.___,---}                         / ,`,,/  ,`,;",
+                     "  `        { {                                     __  /  ,`/   ,`,;",
+                     "        /   \\ \\                                 _,`, `{  `,{   `,`;`",
+                     "       {     } }       /~\\         .-:::-.     (--,   ;\\ `,}  `,`;",
+                     "       \\\\._./ /      /` , \\      ,:::::::::,     `~;   \\},/  `,`;     ,-=-",
+                     "        `-..-`      /. `  .\\_   ;:::::::::::;  __,{     `/  `,`;     {",
+                     "                   / , ~ . ^ `~`\\:::::::::::<<~>-,,`,    `-,  ``,_    }",
+                     "                /~~ . `  . ~  , .`~~\\:::::::;    _-~  ;__,        `,-`",
+                     "       /`\\    /~,  . ~ , '  `  ,  .` \\::::;`   <<<~```   ``-,,__   ;",
+                     "      /` .`\\ /` .  ^  ,  ~  ,  . ` . ~\\~                       \\\\, `,__",
+                     "     / ` , ,`\\.  ` ~  ,  ^ ,  `  ~ . . ``~~~`,                   `-`--, \\",
+                     "    / , ~ . ~ \\ , ` .  ^  `  , . ^   .   , ` .`-,___,---,__            ``",
+                     "  /` ` . ~ . ` `\\ `  ~  ,  .  ,  `  ,  . ~  ^  ,  .  ~  , .`~---,___",
+                     "/` . `  ,  . ~ , \\  `  ~  ,  .  ^  ,  ~  .  `  ,  ~  .  ^  ,  ~  .  `-,",
+                     "You take and eat half a basket worth of mushrooms.", "",
                         "You have entered the world of fantasy and wonder.",
                         "You see a fat dragon to your left and a skinny griffin to your right"],
                        ["Go towards the dragon",
@@ -306,5 +369,7 @@ mounts_the_unicorn.next_events = [accepts_icecream]
 for i in intro:
     print(i)
     time.sleep(0.4)
+
+input("press [enter] to continue")
 
 waking_up.play()
