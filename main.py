@@ -260,27 +260,53 @@ counts_it = Event(["You have given your answer.",
                     "You are eaten by the dragon",
                     "You have died .."], ["Go back"], [])
 
-correct_answer = Event(["You have given your answer.",
+correct_answer = Event(["   (\\{\\",
+                        "   { { \\ ,~,",
+                        "  { {   \\)))  *",
+                        "   { {  (((  /",
+                        "    {/{/; ,\\/",
+                        "       (( \'",
+                        "        \\` \\",
+                        "        (/  \\",
+                        "        `)  `\\",
+                        "You have given your answer.",
                          "The dragon looks pleased by your answer and lets you go onward.",
                          "Soon, a pixie approaches you.",
                          "She offers you some pixie dust. ",
                          "She claims it will teleport you home. Will you accept?"],
                         ["Accept", "Decline", "Go back"], [])
 
-doesnt_take_pixie_dust = Event(["You decline the offfer.",
-                              "As soon as you do, the pixie and all other fantastical beasts",
-                              "around you start to disappear.",
-                              "", "You are surrounded by a tribe of indigenous people."],
-                             ["Surrender",
-                              "Try to escape"
-                              "Go back"], [])
+doesnt_take_pixie_dust = Event(["   \\\\\\|||///",
+                                " .  ======= ",
+                                "/ \\| O   O |",
+                                "\\ / \\`___\'/ ",
+                                " #   _| |_",
+                                "(#) (     ) ",
+                                " #\\//|* *|\\\\ ",
+                                " #\\/(  *  )/  ",
+                                " #   =====  ",
+                                " #   ( U ) ",
+                                " #   || ||",
+                                ".#---\'| |`----.",
+                                "`#----\' `-----\'",
+                                "You decline the offfer.",
+                                "As soon as you do, the pixie and all other fantastical beasts",
+                                "around you start to disappear.",
+                                "", "You are surrounded by a tribe of indigenous people."],
+                               ["Surrender",
+                                "Try to escape",
+                                "Go back"], [])
 
 tries_to_escape_tribesmen = Event(["You try to escape the tribe.",
                                 "There is just too many of them, and your struggle is meaningless.",
                                 "You tried to run, and according to the local custom, you are eaten.",
                                 "You have died .."], ["Go back"], [])
 
-doesnt_try_to_escape = Event(["You have surrendered to the tribe.",
+doesnt_try_to_escape = Event(["__  __   ___   __  __ ",
+                              "\\*) \\*)  \\*/  (*/ (*/",
+                              " \\*\\_\\*\\_|O|_/*/_/*/",
+                              "  \\_______________/",
+                              "You have surrendered to the tribe.",
                            "You are crowned their king, according to the local custom.",
                            "You soon realize that the tribe has some customs that are a bit controversial."],
                           ["Try to reform their customs",
@@ -313,23 +339,34 @@ rainbow_road = Event(["You approach the rainbow road.",
                       "Go back"], [])
 
 asks_for_glutenfree = Event(["You ask Death for gluten-free ice-cream cone.",
-                                "Death grabs his scythe",
-                                "You notice that your head is not connected to your body anymore.",
-                                "You have died .."], ["Go back"], [])
+                             "Death grabs his scythe",
+                             "You notice that your head is not connected to your body anymore.",
+                             "You have died .."], ["Go back"], [])
 
-accepts_icecream = Event(["As you accept the ice-cream, it starts to change shape and expand,",
+accepts_icecream = Event(["                    /",
+                          "               ,.. /",
+                          "             ,\'   \';",
+                          "  ,,.__    _,\' /\';  .",
+                          " :\',\'  ~~~~    \'. \'~",
+                          ":\' (   )         )::,",
+                          "\'. \'. .=----=..-~  .;\'",
+                          " \'  ;\'  ::   \':.  \'\"",
+                          "   (:   \':    ;)",
+                          "    \\   \'\"  ./",
+                          "     \'\"      \'\"",
+                          "As you accept the ice-cream, it starts to change shape and expand,",
                          " morphing into a fabulous unicorn."],
                         ["Mount the unicorn",
                          "Say <eew, I dont line unicorns!>",
                          "Go back"], [])
 
 doesnt_like_unicorns = Event(["As you say that, your chest is impaled by the unicorn.",
-                             "You are now a decoration on the unicorn's head.",
-                             "You have died .."], ["Go back"], [])
+                              "You are now a decoration on the unicorn's head.",
+                              "You have died .."], ["Go back"], [])
 
 mounts_the_unicorn = Event(["You mount the unicorn.",
-                               "You take off on the rainbow road towards a brighter future.",
-                               "YOU HAVE WON"], ["Go back"], [])
+                            "You take off on the rainbow road towards a brighter future.",
+                            "YOU HAVE WON"], ["Go back"], [])
 
 waking_up.next_events = [fainting_and_dying, bandaging]
 bandaging.next_events = [its_getting_dark, its_getting_dark, waking_up]
