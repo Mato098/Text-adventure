@@ -328,8 +328,8 @@ takes_pixie_dust = Event(["As you take the pixie dust, two roads appear before y
                             "Go back"], [])
 
 death_road = Event(["You have chosen the road of death.",
-                     "As you step on it, you die.",
-                     "You have died .."], ["Go back"], [])
+                    "As you step on it, you die. Not surprising.",
+                    "You have died .."], ["Go back"], [])
 
 rainbow_road = Event(["You approach the rainbow road.",
                       "As you get closer, you notice that Death is blocking your path.",
@@ -338,7 +338,26 @@ rainbow_road = Event(["You approach the rainbow road.",
                       "Ask for gluten-free ice-cream cone",
                       "Go back"], [])
 
-asks_for_glutenfree = Event(["You ask Death for gluten-free ice-cream cone.",
+asks_for_glutenfree = Event(["            *********",
+                             "           *************",
+                             "          *****     *****",
+                             "         ***           ***",
+                             "        ***             ***",
+                             "        **    0     0    **",
+                             "        **               **                  ____",
+                             "        ***             ***             //////////",
+                             "        ****           ****        ///////////////",
+                             "        *****         *****    ///////////////////",
+                             "        ******       ******/////////         |  |",
+                             "      *********     ****//////               |  |",
+                             "   *************   **/////*****              |  |",
+                             "  *************** **///***********          *|  |*",
+                             " ************************************    ****| <=>*",
+                             "*********************************************|<===>* ",
+                             "*********************************************| <==>*",
+                             "***************************** ***************| <=>*",
+                             "******************************* *************|  |*",
+                             "You ask Death for gluten-free ice-cream cone.",
                              "Death grabs his scythe",
                              "You notice that your head is not connected to your body anymore.",
                              "You have died .."], ["Go back"], [])
