@@ -40,18 +40,21 @@ class Event:
             self.next_events[choice].play()
 
 
-intro = ["You have boarded an aeroplane just like any other time.",
+intro = ["You have boarded an airplane just like any other time.",
          "It takes off, no problem.",
          "As you fly over a group of islands, you hear your captain speaking:",
          "\"Dear passengers, I regret to inform you, but the plane ",
          "is having unexpected difficulties concerning three out of four engines.",
          "This may be the best time to call your family.\"",
-         "As if on cue, there is a sudden bang, as one of the engines engine rips itself to shreds.",
-         "The plane starts to dip towards the ground .."]
+         "As if on cue, there is a sudden bang, as one of the engines rips itself to shreds.",
+         "The plane starts to dip towards the ground ..",
+         "", "GOAL: escape the island", ""]
 
 # TODO link all events after all are declared, add pictures
+# TODO: decompose logic and events into separate files
 
-preberie_sa_z_lietadla = Event(["You wake up.",
+
+waking_up = Event(["You wake up.",
                                 "It is quiet, it seems you are the only survivor.",
                                 "You notice that your arm is bleeding.",
                                 "If you do not stop the bleeding, you may bleed out.",
@@ -59,25 +62,25 @@ preberie_sa_z_lietadla = Event(["You wake up.",
                                ["Cauterize the wound with the hot piece of metal",
                                 "Patch it up using the first aid kit"], [])
 
-strati_vedomie_a_skape = Event(["As you press the piece of metal against the wound,",
+fainting_and_dying = Event(["As you press the piece of metal against the wound,",
                                 "the pain turns your mind blank and you lose consciousness.",
                                 "The wound was not yet sealed properly.",
-                                "You have died .."], ["Go back"], [preberie_sa_z_lietadla])
+                                "You have died .."], ["Go back"], [waking_up])
 
-zafacuje_to = Event(["You bandage your arm, it seems to have helped tremendously.",
+bandaging = Event(["You bandage your arm, it seems to have helped tremendously.",
                      "What now?"],
                     ["Explore the island along the shore",
                      "Explore the island - head inland",
                      "Go back"], [])
 
-stmieva_sa = Event(["So far you have found nothing of interest.",
+its_getting_dark = Event(["So far you have found nothing of interest.",
                     "It is getting dark very fast, and you see a glimmer of light in the distance.",
-                    "Or is it yor mind playing tricks?"],
+                    "Or is it your mind playing tricks?"],
                    ["Set up a shelter for the night",
                     "Go towards the light",
                     "Go back"], [])
 
-urobi_si_shelter = Event(["You wake up in your shelter,",
+making_shelter = Event(["You wake up in your shelter,",
                           "but you notice that you seem to be missing a kidney.",
                           "There is a line of stitches just where your kidney should have been,",
                           "and it hurts quite a bit.",
@@ -86,32 +89,32 @@ urobi_si_shelter = Event(["You wake up in your shelter,",
                           "Do not follow the footprints, go in a different direction",
                           "Go back"], [])
 
-nasleduje_stopy = Event(["Tou follow the footprints for quite a while.",
+following_footprints = Event(["You follow the footprints for quite a while.",
                          "Finally, you notice a large field of what seems like marijuana, tall as a person.",
-                         "There are guards patrolling the edges if the field.",
+                         "There are guards patrolling the edges of the field.",
                          "Behind the field there are several buildings, and one as big as a plane hangar"],
                         ["Sneak by the guards into the field",
                          "Pacify a guard and take his equipment",
                          "Go back"], [])
 
-spacifikuje_straz = Event(["You ambush one of the patrolling guards.",
+pacify_guard = Event(["You ambush one of the patrolling guards.",
                            "In the struggle you get shot several times as you have no training",
                            "You have died .."], ["Go back"], [])
 
-vplizi_sa_dnu = Event(["You sneak into the field when no one can see you.",
-                       "The wound where your kidney was starts to hurt quite considerably."],
+sneaks_in = Event(["You sneak into the field when no one can see you.",
+                       "The wound, where your kidney was, starts to hurt quite considerably."],
                       ["Make a joint and continue",
                        "Do not make a joint and continue",
                        "Go back"], [])
 
-nezrobi_si_joint = Event(["You choose not to make a joint.",
-                          "The spiking pain gets grows in intensity,",
-                          "to the point when you are not able to suppress a scream.",
+no_joint = Event(["You choose not to make a joint.",
+                          "The spiking pain grows in intensity,",
+                          "to the point where you are not able to suppress a scream.",
                           "You hear barking of dogs, it gets closer and closer by the second.",
                           "You are devoured by a pack of hounds.",
                           "You have died .."], ["Go back"], [])
 
-zrobi_si_joint = Event(["You decide to roll a joint from the plants around you.",
+makes_joint = Event(["You decide to roll a joint from the plants around you.",
                         "The pain fades away, as if it was never there.",
                         "From there you continue into the nearest building.",
                         "It seems to be a dressing room for the mercenaries working there.",
@@ -120,34 +123,34 @@ zrobi_si_joint = Event(["You decide to roll a joint from the plants around you."
                         "Do not dress a guard, continue as you are now",
                         "Go back"], [])
 
-neprezlecie_sa = Event(["As you try to exit the room, another guard sees you.",
+doesnt_change_clothes = Event(["As you try to exit the room, another guard sees you.",
                         "You are executed.",
                         "You have died .."], ["Go back"], [])
 
-prezlecie_sa = Event(["You dress up as a guard. You fit in quite well.",
+changes_clothes = Event(["You dress up as a guard. You fit in quite well.",
                       "As you take a look around, a man orders you",
                       "to execute a slave that has not fulfilled his quota.",
                       "He looks to be the chief around here."],
                      ["Comply", "Refuse, give alternate options.",
                       "Go back"], [])
 
-nepopravi_typka = Event(["You have chosen to refuse the order you have been given",
+refuses = Event(["You have chosen to refuse the order you have been given",
                          "and you give alternate solutions.",
                          "You are executed on basis of disobedience",
                          "You have died .."], ["Go back"], [])
 
-popravi_typka = Event(["You have complied with the order, executing the slave.",
+complies = Event(["You have complied with the order, executing the slave.",
                        "You are given a pass to go home for the weekend directly by the chief.",
                        "YOU HAVE WON", "",
-                       "~but at what price?"], ["Go back"], [prezlecie_sa])
+                       "~but at what price?"], ["Go back"], [])
 
-ide_za_svetlom = Event(["You decide to follow the shimmering light in the distance.",
+follows_the_light= Event(["You decide to follow the shimmering light in the distance.",
                         "On the way, you stumble across a patch of magic mushrooms."],
                        ["Eat some",
                         "Leave them be",
                         "Go back", "Go back"], [])  ##(???)
 
-nezje_lysohlavku = Event(["As you get closer to the light, there seem to be some buildings there.",
+doesnt_eat_shroom = Event(["As you get closer to the light, there seem to be some buildings there.",
                           "On what looks like a small runway is a small plane,",
                           "it doesn't look like it is in the best condition."
                           "Several people are strolling about"],
@@ -155,33 +158,33 @@ nezje_lysohlavku = Event(["As you get closer to the light, there seem to be some
                           "Ask one of the people there for help",
                           "Go back"], [])
 
-poziada_o_pomoc = Event(["You decide to ask one of the people there for help.",
+asks_for_help = Event(["You decide to ask one of the people there for help.",
                          "They look like mercenaries and take you to their headquarters.",
                          "You are questioned and ultimately shot on basis of",
                          "being a spy or working with the government.",
                          "You have died .."], ["Go back"], [])
 
-infiltruje_lietadlo = Event(["You decide to infiltrate the plane.",
+infiltrate_plane = Event(["You decide to infiltrate the plane.",
                              "It goes without problems, and you hide among the cargo of plastic-wrapped packages.",
                              "Soon enough, the plane takes off.",
                              "Several minutes after takeoff you smell smoke.",
                              "The plane starts to dip towards the ground .."],\
                             ["Try to save yourself",
-                             "Go back"], [])  # ->preberie_sa_z_lietadla (???)
+                             "Go back"], [])  # ->waking_up (???)
 
-zje_lysohlavku = Event(["You take eat half a basket worth of mushrooms.", "",
+eats_shroom = Event(["You take and eat half a basket worth of mushrooms.", "",
                         "You have entered the world of fantasy and wonder.",
                         "You see a fat dragon to your left and a skinny griffin to your right"],
                        ["Go towards the dragon",
                         "Go towards the griffin",
                         "Go back"], [])
 
-ide_za_griffinom = Event(["You decide to go towards the griffin.",
-                          "It looks very skinny, as if it hasn't eaten is quite some time.",
+goes_to_griffin = Event(["You decide to go towards the griffin.",
+                          "It looks very skinny, as if it hasn't eaten in quite some time.",
                           "You are eaten by the griffin.",
                           "You have died .."], ["Go back"], [])
 
-ide_za_drakom = Event(["You decide to go towards the dragon.",
+goes_to_dragon = Event(["You decide to go towards the dragon.",
                        "The dragon tells you that he will eat you unless you answer his riddle correctly.",
                        "<If you had five mangoes and two bananas in one hand and two mangoes and four bananas",
                        "in the other hand, what would you have?>"],
@@ -189,118 +192,119 @@ ide_za_drakom = Event(["You decide to go towards the dragon.",
                        "Seven mangoes and six bananas",
                        "Go back"], [])
 
-spocita_to = Event(["You have given your answer.",
+counts_it = Event(["You have given your answer.",
                     "The dragon looks displeased by your answer.",
                     "You are eaten by the dragon",
                     "You have died .."], ["Go back"], [])
 
-spravna_odpoved = Event(["You have given your answer.",
+correct_answer = Event(["You have given your answer.",
                          "The dragon looks pleased by your answer and lets you go onward.",
                          "Soon, a pixie approaches you.",
                          "She offers you some pixie dust. ",
                          "She claims it will teleport you home. Will you accept?"],
                         ["Accept", "Decline", "Go back"], [])
 
-nezoberie_pixie_dust = Event(["You decline the offfer.",
+doesnt_take_pixie_dust = Event(["You decline the offfer.",
                               "As soon as you do, the pixie and all other fantastical beasts",
                               "around you start to disappear.",
-                              "", "You are surrounded by a tribe od indigenous people."],
+                              "", "You are surrounded by a tribe of indigenous people."],
                              ["Surrender",
                               "Try to escape"
                               "Go back"], [])
 
-uteka_pred_domorodcami = Event(["Yot try to escape the tribe.",
-                                "There is just too much of them, and your struggle is meaningless.",
+tries_to_escape_tribesmen = Event(["You try to escape the tribe.",
+                                "There is just too many of them, and your struggle is meaningless.",
                                 "You tried to run, and according to the local custom, you are eaten.",
-                                "You have died .."], ["Go back"], [nezoberie_pixie_dust])
+                                "You have died .."], ["Go back"], [])
 
-neuteka_a_vzda_sa = Event(["You have surrendered to the tribe.",
+doesnt_try_to_escape = Event(["You have surrendered to the tribe.",
                            "You are crowned their king, according to the local custom.",
                            "You soon realize that the tribe has some customs that are a bit controversial."],
                           ["Try to reform their customs",
                            "Leave the customs as they are",
                            "Go back"], [])
 
-nezmeni_tradicie = Event(["You have decided not to change their customs.",
+doesnt_change_customs = Event(["You have decided not to change their customs.",
                           "During full moon you are offered to their gods as a sacrifice.",
                           "You have died .."], ["Go back"], [])
 
-zmeni_tradicie = Event(["You have changed their traditions, but it was not easy.",
+changes_customs = Event(["You have changed their traditions, but it was not easy.",
                         "You are to remain their king for the rest of your life.",
                         "YOU HAVE PARTIALLY WON"], ["Go back"], [])
 
-zoberie_pixie_dust = Event(["As you take the pixie dust, two roads appear before you.",
+takes_pixie_dust = Event(["As you take the pixie dust, two roads appear before you.",
                             "One looks like a road of death and heads underground.",
                             "The other is a road made of rainbow and stretches into the sky"],
                            ["Choose the road of death", "Choose the rainbow road",
                             "Go back"], [])
 
-cesta_smrti = Event(["You have chosen the road of death.",
+death_road = Event(["You have chosen the road of death.",
                      "As you step on it, you die.",
                      "You have died .."], ["Go back"], [])
 
-cesta_duhova = Event(["You approach the rainbow road.",
+rainbow_road = Event(["You approach the rainbow road.",
                       "As you get closer, you notice that Death is blocking your path.",
                       "It offers you a black hole flavored ice-cream"],
                      ["Accept",
                       "Ask for gluten-free ice-cream cone",
                       "Go back"], [])
 
-popyta_si_bezglutenove = Event(["You ask Death for gluten-free ice-cream cone.",
+asks_for_glutenfree = Event(["You ask Death for gluten-free ice-cream cone.",
                                 "Death grabs his scythe",
                                 "You notice that your head is not connected to your body anymore.",
                                 "You have died .."], ["Go back"], [])
 
-prijme_zmrzlinu = Event(["As you accept the ice-cream, it starts to change shape and expand,",
+accepts_icecream = Event(["As you accept the ice-cream, it starts to change shape and expand,",
                          " morphing into a fabulous unicorn."],
                         ["Mount the unicorn",
                          "Say <eew, I dont line unicorns!>",
                          "Go back"], [])
 
-nema_rad_jednorozce = Event(["As you say that, your chest is impaled by the unicorn.",
+doesnt_like_unicorns = Event(["As you say that, your chest is impaled by the unicorn.",
                              "You are now a decoration on the unicorn's head.",
                              "You have died .."], ["Go back"], [])
 
-nasadne_na_jednorozca = Event(["You mount the unicorn.",
+mounts_the_unicorn = Event(["You mount the unicorn.",
                                "You take off on the rainbow road towards a brighter future.",
                                "YOU HAVE WON"], ["Go back"], [])
 
-preberie_sa_z_lietadla.next_events = [strati_vedomie_a_skape, zafacuje_to]
-zafacuje_to.next_events = [stmieva_sa, stmieva_sa, preberie_sa_z_lietadla]
-stmieva_sa.next_events = [urobi_si_shelter, ide_za_svetlom, zafacuje_to]
-urobi_si_shelter.next_events = [nasleduje_stopy, ide_za_svetlom, stmieva_sa]
-nasleduje_stopy.next_events = [vplizi_sa_dnu, spacifikuje_straz, urobi_si_shelter]
-spacifikuje_straz.next_events = [nasleduje_stopy]
-vplizi_sa_dnu.next_events = [zrobi_si_joint, nezrobi_si_joint, nasleduje_stopy]
-nezrobi_si_joint.next_events = [vplizi_sa_dnu]
-zrobi_si_joint.next_events = [prezlecie_sa, neprezlecie_sa, vplizi_sa_dnu]
-neprezlecie_sa.next_events = [zrobi_si_joint]
-prezlecie_sa.next_events = [popravi_typka, nepopravi_typka, zrobi_si_joint]
-nepopravi_typka.next_events = [prezlecie_sa]
-popravi_typka.next_events = [prezlecie_sa]
-ide_za_svetlom.next_events = [zje_lysohlavku, nezje_lysohlavku, urobi_si_shelter, stmieva_sa]
-nezje_lysohlavku.next_events = [infiltruje_lietadlo, poziada_o_pomoc, ide_za_svetlom]
-poziada_o_pomoc = [nezje_lysohlavku]
-infiltruje_lietadlo.next_events = [preberie_sa_z_lietadla, nezje_lysohlavku]
-zje_lysohlavku.next_events = [ide_za_drakom, ide_za_griffinom, ide_za_svetlom]
-ide_za_griffinom.next_events = [zje_lysohlavku]
-ide_za_drakom.next_events = [spravna_odpoved, spocita_to, zje_lysohlavku]
-spocita_to.next_events = [ide_za_drakom]
-spravna_odpoved.next_events = [zoberie_pixie_dust, nezoberie_pixie_dust, ide_za_drakom]
-nezoberie_pixie_dust.next_events = [neuteka_a_vzda_sa, uteka_pred_domorodcami, spravna_odpoved]
-neuteka_a_vzda_sa.next_events = [zmeni_tradicie, nezmeni_tradicie, nezoberie_pixie_dust]
-nezmeni_tradicie.next_events = [neuteka_a_vzda_sa]
-zmeni_tradicie.next_events = [neuteka_a_vzda_sa]
-zoberie_pixie_dust.next_events = [cesta_smrti, cesta_duhova, spravna_odpoved]
-cesta_smrti.next_events = [zoberie_pixie_dust]
-cesta_duhova.next_events = [prijme_zmrzlinu, popyta_si_bezglutenove, zoberie_pixie_dust]
-popyta_si_bezglutenove.next_events = [cesta_duhova]
-prijme_zmrzlinu.next_events = [nasadne_na_jednorozca, nema_rad_jednorozce, cesta_duhova]
-nema_rad_jednorozce.next_events = [prijme_zmrzlinu]
-nasadne_na_jednorozca.next_events = [prijme_zmrzlinu]
+waking_up.next_events = [fainting_and_dying, bandaging]
+bandaging.next_events = [its_getting_dark, its_getting_dark, waking_up]
+its_getting_dark.next_events = [making_shelter, follows_the_light, bandaging]
+making_shelter.next_events = [following_footprints, follows_the_light, its_getting_dark]
+following_footprints.next_events = [sneaks_in, pacify_guard, making_shelter]
+pacify_guard.next_events = [following_footprints]
+sneaks_in.next_events = [makes_joint, no_joint, following_footprints]
+no_joint.next_events = [sneaks_in]
+makes_joint.next_events = [changes_clothes, doesnt_change_clothes, sneaks_in]
+doesnt_change_clothes.next_events = [makes_joint]
+changes_clothes.next_events = [complies, refuses, makes_joint]
+refuses.next_events = [changes_clothes]
+complies.next_events = [changes_clothes]
+follows_the_light.next_events = [eats_shroom, doesnt_eat_shroom, making_shelter, its_getting_dark]
+doesnt_eat_shroom.next_events = [infiltrate_plane, asks_for_help, follows_the_light]
+asks_for_help = [doesnt_eat_shroom]
+infiltrate_plane.next_events = [waking_up, doesnt_eat_shroom]
+eats_shroom.next_events = [goes_to_dragon, goes_to_griffin, follows_the_light]
+goes_to_griffin.next_events = [eats_shroom]
+goes_to_dragon.next_events = [correct_answer, counts_it, eats_shroom]
+counts_it.next_events = [goes_to_dragon]
+correct_answer.next_events = [takes_pixie_dust, doesnt_take_pixie_dust, goes_to_dragon]
+doesnt_take_pixie_dust.next_events = [doesnt_try_to_escape, tries_to_escape_tribesmen, correct_answer]
+tries_to_escape_tribesmen.next_events = [doesnt_take_pixie_dust]
+doesnt_try_to_escape.next_events = [changes_customs, doesnt_change_customs, doesnt_take_pixie_dust]
+doesnt_change_customs.next_events = [doesnt_try_to_escape]
+changes_customs.next_events = [doesnt_try_to_escape]
+takes_pixie_dust.next_events = [death_road, rainbow_road, correct_answer]
+death_road.next_events = [takes_pixie_dust]
+rainbow_road.next_events = [accepts_icecream, asks_for_glutenfree, takes_pixie_dust]
+asks_for_glutenfree.next_events = [rainbow_road]
+accepts_icecream.next_events = [mounts_the_unicorn, doesnt_like_unicorns, rainbow_road]
+doesnt_like_unicorns.next_events = [accepts_icecream]
+mounts_the_unicorn.next_events = [accepts_icecream]
 
 for i in intro:
     print(i)
     time.sleep(0.4)
 
-preberie_sa_z_lietadla.play()
+waking_up.play()
