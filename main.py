@@ -11,35 +11,43 @@ class Event:
         self.next_events = next_events
 
     def play(self):
-        print("* ----------------- *")
+        print_line("* ----------------- *")
         for line in self.text:
-            time.sleep(0.3)
-            print(line)
-        print()
+            print_line(line)
 
-        print(f"Choices: ",)
+        print()
+        print_line(f"Choices: ",)
         for idx, choice in enumerate(self.choices):
-            time.sleep(0.2)
-            print(f"         {idx + 1}; {choice}")
-
-        print()
+            print_line(f"         {idx + 1}; {choice}")
 
         if not self.choices:
-            input("press [enter] to exit")
+            print_line("press [enter] to exit")
+            input()
             sys.exit()
 
         choice = 1232
         while 0 >= choice or choice > len(self.choices):
-            choice = input("Your choice: ")
+
+            print_line("Your choice: ")
+            choice = input()
 
             if not choice.isdigit():
-                print("~enter a number~")
+                print_line("~enter a number~")
+
                 choice = 1232
             else:
                 choice = int(choice)
 
         if 0 < choice <= len(self.choices):
             self.next_events[choice - 1].play()
+
+
+def print_line(line):
+    for chr in line:
+        time.sleep(0.035)
+        sys.stdout.write(chr)
+        sys.stdout.flush()
+    print()
 
 
 intro = ["       ____       _",
@@ -180,7 +188,7 @@ refuses = Event(["You have chosen to refuse the order you have been given",
 complies = Event(["You have complied with the order, executing the slave.",
                        "You are given a pass to go home for the weekend directly by the chief.",
                        "YOU HAVE WON", "",
-                       "~but at what price?"], ["Go back"], [])
+                       "~but at what price?"], [], [])
 
 follows_the_light= Event(["  n", " / `\\", "(___:)", " \"\"\"\"",
                           "  ||", "  ||", "  ))", " //", "((", " \\\\", "  ))",
@@ -385,7 +393,7 @@ doesnt_like_unicorns = Event(["As you say that, your chest is impaled by the uni
 
 mounts_the_unicorn = Event(["You mount the unicorn.",
                             "You take off on the rainbow road towards a brighter future.",
-                            "YOU HAVE WON"], ["Go back"], [])
+                            "YOU HAVE WON"], [], [])
 
 waking_up.next_events = [fainting_and_dying, bandaging]
 bandaging.next_events = [its_getting_dark, its_getting_dark, waking_up]
@@ -399,7 +407,7 @@ makes_joint.next_events = [changes_clothes, doesnt_change_clothes, sneaks_in]
 doesnt_change_clothes.next_events = [makes_joint]
 changes_clothes.next_events = [complies, refuses, makes_joint]
 refuses.next_events = [changes_clothes]
-complies.next_events = [changes_clothes]
+complies.next_events = []
 follows_the_light.next_events = [eats_shroom, doesnt_eat_shroom, making_shelter, its_getting_dark]
 doesnt_eat_shroom.next_events = [infiltrate_plane, asks_for_help, follows_the_light]
 asks_for_help = [doesnt_eat_shroom]
@@ -420,12 +428,12 @@ rainbow_road.next_events = [accepts_icecream, asks_for_glutenfree, takes_pixie_d
 asks_for_glutenfree.next_events = [rainbow_road]
 accepts_icecream.next_events = [mounts_the_unicorn, doesnt_like_unicorns, rainbow_road]
 doesnt_like_unicorns.next_events = [accepts_icecream]
-mounts_the_unicorn.next_events = [accepts_icecream]
+mounts_the_unicorn.next_events = []
 
 for i in intro:
-    print(i)
-    time.sleep(0.4)
+    print_line(i)
+print_line("press [enter] to continue")
 
-input("press [enter] to continue")
+input()
 
 waking_up.play()
