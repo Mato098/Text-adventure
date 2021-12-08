@@ -44,7 +44,7 @@ class Event:
 
 def print_line(line):
     for chr in line:
-        time.sleep(0.035)
+        time.sleep(0.025)
         sys.stdout.write(chr)
         sys.stdout.flush()
     print()
